@@ -1,6 +1,8 @@
-cmake_minimum_required(VERSION 3.2)
+cmake_minimum_required(VERSION 3.0.2)
 
 project(CompGeomUtils CXX)
+
+set(CMAKE_CXX_STANDARD 11)
 
 set(sources 
     src/point.cpp)
@@ -23,3 +25,5 @@ target_include_directories(
     PUBLIC
     $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/inc>
     $<INSTALL_INTERFACE:${HEADER_INSTALL_DIR}>)
+enable_testing()
+add_subdirectory(test)

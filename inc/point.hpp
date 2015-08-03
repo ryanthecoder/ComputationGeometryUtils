@@ -7,14 +7,24 @@
 */
 #ifndef POINT
 #define POINT
+#include <vector>
 namespace point {
     class Point{
-        std::Vector<double> dims;
+        std::vector<double> dims;
         int dimension;
         public:
-            Point(std::Vector);
-            Point(Point);
-            double distance(Point);
+            Point(const std::vector<double>&);
+            Point(const Point&);
+            double distance(const Point&);
+            bool operator==(const Point& rhs) {
+                if (dimension == rhs.dimension) {
+                    for (int i = 0;i < dimension;i++) {
+                        if (dims[i] != rhs.dims[i]) {return false;}
+                    }
+                    return true;
+                }
+                else {return false;}
+            }
     };
 }
 #endif //POINT
