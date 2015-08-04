@@ -6,7 +6,8 @@
     Class interpretation of a point and utils on points and sets of points
 */
 #include "point.hpp"
-#include <cmath>
+#include <vector>
+#include <algorithm>
 #include <assert.h>
 namespace point {
 
@@ -28,5 +29,10 @@ double Point::distance(const Point &second_point) {
         sum += pow(second_point.dims[i]-dims[i],2.0);
     }
     return sqrt(sum);
+}
+bool Point::operator<(const Point& lhs, const Point& rhs) {
+    zero_vector = new std::vector<double>[lhs.dims];
+    Point home = Point(std::fill(zero_vector.begin(), zero_vector.end(),0.0));
+    return lhs.distance(home) < rhs.distance(home);
 }
 }

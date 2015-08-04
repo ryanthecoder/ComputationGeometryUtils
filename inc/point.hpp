@@ -25,6 +25,16 @@ namespace point {
                 }
                 else {return false;}
             }
+            bool operator!=(const Point& rhs) {
+                for (int i =0;i<dimension;i++) {
+                    if (dims[i] != rhs.dims[i]) {return true;}
+                }
+                return false;
+            }
+            bool operator< (const Point& lhs, const Point& rhs);
+            bool operator> (const Point& lhs, const Point& rhs){return rhs < lhs;}
+            bool operator<=(const Point& lhs, const Point& rhs){return !(lhs > rhs);}
+            bool operator>=(const Point& lhs, const Point& rhs){return !(lhs < rhs);}
     };
 }
 #endif //POINT
