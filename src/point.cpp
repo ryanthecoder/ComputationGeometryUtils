@@ -30,9 +30,30 @@ double Point::distance(const Point &second_point) {
     }
     return sqrt(sum);
 }
-bool Point::operator<(const Point& lhs, const Point& rhs) {
-    zero_vector = new std::vector<double>[lhs.dims];
-    Point home = Point(std::fill(zero_vector.begin(), zero_vector.end(),0.0));
-    return lhs.distance(home) < rhs.distance(home);
+bool Point::operator<(const Point& rhs) {
+    std::vector<double> zero_vector(dims.size());
+    std::fill(zero_vector.begin(), zero_vector.end(), 0.0);
+    Point home = Point(zero_vector);
+    return this->distance(home) < rhs.distance(home);
 }
+bool Point::operator> (const Point& rhs){return rhs < *this;}
+bool Point::operator<=(const Point& rhs){return !(*this > rhs);}
+bool Point::operator>=(const Point& rhs){return !(*this < rhs);}
+Point Point::operator+(const Point& rhs) {
+    assert(dimension == rhs.dimension);
+    std::vector<double> new_dims;
+    for (int i = 0;i<dimension;i++) {
+        new_dims.push_back(dims[i] + rhs.dims[i]);
+    }
+    return Point(new_dims);
+}
+Point Point::operator-(const Point& rhs) {
+    assert(dimension == rhs.dimension);
+    std::vector<double> new_dims;
+    for (int i = 0;i<dimension;i++) {
+        new_dims.push_back(dims[i] - rhs.dims[i]);
+    }
+    return Point(new_dims);
+}
+
 }

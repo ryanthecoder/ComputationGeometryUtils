@@ -31,10 +31,12 @@ namespace point {
                 }
                 return false;
             }
-            bool operator< (const Point& lhs, const Point& rhs);
-            bool operator> (const Point& lhs, const Point& rhs){return rhs < lhs;}
-            bool operator<=(const Point& lhs, const Point& rhs){return !(lhs > rhs);}
-            bool operator>=(const Point& lhs, const Point& rhs){return !(lhs < rhs);}
+            Point operator+ (const Point&);
+            Point operator- (const Point&);
+            bool operator< (const Point&);
+            bool operator> (const Point&);
+            bool operator<=(const Point&);
+            bool operator>=(const Point&);
     };
 }
 #endif //POINT
